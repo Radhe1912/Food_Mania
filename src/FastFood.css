@@ -1,0 +1,101 @@
+.search-bar {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.search-bar input {
+    padding: 12px 20px;
+    width: 350px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 25px;  /* Rounded input */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
+    transition: all 0.3s ease-in-out;  /* Smooth transitions for hover/focus */
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: #28a745;  /* Change border color when focused */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Increase shadow on focus */
+}
+
+.search-bar input::placeholder {
+    color: #aaa;  /* Lighter placeholder text */
+    font-style: italic;  /* Make the placeholder more stylish */
+}
+
+.food-menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-items: center;
+}
+
+.food-item {
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+    width: 350px;
+}
+
+.food-item img {
+    width: 100%;
+    height: auto;
+}
+
+.img-item{
+    max-height: 200px;
+}
+
+p {
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    padding: 10px 15px;
+    margin: 0 5px;
+    border: none;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.pagination button.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination button:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.food-menu button {
+    padding: 10px 20px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.2s ease;
+    background-color: #28a745;
+    color: white;
+}
+
+.food-menu button:hover {
+    background-color: #555;
+    color: white;
+}

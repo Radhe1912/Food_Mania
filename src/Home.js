@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Home.css';
+import Header from './Header';
+import Footer from './Footer';
 import Img1 from './Images/Img1.jpg';
 import Img2 from './Images/Img2.jpg';
 import Img3 from './Images/Img3.jpg';
@@ -74,6 +76,24 @@ const Home = () => {
     return (
         <div>
 
+            <Header/>
+
+            <div id="intro" className="bg-image" style={{ backgroundImage: `url(${Img6})`, height: "100vh"}}>
+                <div className="mask" style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}>
+                    <div className="d-flex justify-content-center align-items-center h-100">
+                        <div className="row align-items-center">
+                            <div className="col-12">
+                                <h1 className="mb-0 text-white display-1" style={{fontFamily: "Cinzel, Palatino Linotype,sans-serif"}}>Food Mania</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <main>
+                <div className="container my-5 py-5"></div>
+            </main>
+
             <div className='justify-content-center' style={{marginTop:"-100px", marginBottom:"50px"}}>
                 <h1 style={{fontFamily: "Cinzel,Palatino Linotype,sans-serif"}}>Savor the Flavors: A Taste Experience Like No Other</h1>
             </div>
@@ -142,7 +162,7 @@ const Home = () => {
                                 <p className="card-text">
                                     Experience ultimate comfort and luxury in our well-appointed rooms, designed to make your stay memorable. Each room features modern amenities, including free Wi-Fi, air conditioning, and a spacious bed, ensuring relaxation after a long day of exploring the city or attending business meetings.
                                 </p>
-                                <button className="btn custom-btn" onClick={() => handleRedirect('/book-room')}>Explore Rooms</button>
+                                <button className="btn custom-btn" onClick={() => handleRedirect('/BookRoom')}>Explore Rooms</button>
                             </div>
                         </div>
                     </div>
@@ -158,7 +178,7 @@ const Home = () => {
                                 <p className="card-text">
                                     Reserve a table at our elegant restaurant and indulge in a fine dining experience. Whether you're planning a romantic dinner, a family gathering, or a business lunch, our cozy ambiance and attentive service will make your meal unforgettable. Book your table today and enjoy a delightful dining experience.
                                 </p>
-                                <button className="btn custom-btn" onClick={() => handleRedirect('/book-table')}>Reserve a Table</button>
+                                <button className="btn custom-btn" onClick={() => handleRedirect('/BookTable')}>Reserve a Table</button>
                             </div>
                         </div>
                     </div>
@@ -174,7 +194,7 @@ const Home = () => {
                                 <p className="card-text">
                                     Satisfy your cravings by ordering from our delicious menu, featuring a wide variety of gourmet dishes crafted by our expert chefs. Whether you're in the mood for a quick snack or a full-course meal, we deliver fresh food right to your door. Place your order now and enjoy a taste of luxury in every bite.
                                 </p>
-                                <button className="btn custom-btn" onClick={() => handleRedirect('/order-food')}>Order Now</button>
+                                <button className="btn custom-btn" onClick={() => handleRedirect('/orderFood')}>Order Now</button>
                             </div>
                         </div>
                     </div>
@@ -263,6 +283,8 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+
+            <Footer/>
         </div>
     );
 }

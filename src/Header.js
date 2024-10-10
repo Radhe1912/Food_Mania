@@ -18,7 +18,7 @@ const Header = () => {
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav me-auto">
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#!">Home</a>
+                                    <a className="nav-link" href="/">Home</a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link" href="#!">About</a>
@@ -30,7 +30,7 @@ const Header = () => {
                                     <a className="nav-link" href="#!">Attractions</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#!">Opinions</a>
+                                    <a className="nav-link" href="/BookingDetails">Bookings</a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link" href="#!">Contact</a>
@@ -38,7 +38,7 @@ const Header = () => {
                             </ul>
                             <ul className="navbar-nav d-flex flex-row">
                                 <li className="nav-item me-3 me-lg-0">
-                                    <a className="nav-link" href="#!">
+                                    <a className="nav-link" href="/cart">
                                         <i className="fas fa-shopping-cart"></i>
                                     </a>
                                 </li>
@@ -57,22 +57,6 @@ const Header = () => {
                     </div>
                 </nav>
             </header>
-
-            <div id="intro" className="bg-image" style={{ backgroundImage: `url(${Img6})`, height: "100vh"}}>
-                <div className="mask" style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}>
-                    <div className="d-flex justify-content-center align-items-center h-100">
-                        <div className="row align-items-center">
-                            <div className="col-12">
-                                <h1 className="mb-0 text-white display-1" style={{fontFamily: "Cinzel, Palatino Linotype,sans-serif"}}>Food Mania</h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <main>
-                <div className="container my-5 py-5"></div>
-            </main>
         </div>
     );
 };

@@ -39,9 +39,14 @@ body {
 }
 
 .navbar-scroll .navbar-brand,
-.navbar-scroll .nav-link,
+.navbar-scroll .nav-link, .nav-item,
 .navbar-scroll .fa-bars {
     color: #fff;
+    text-decoration: none;
+}
+.logout-btn{
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .navbar-scroll {

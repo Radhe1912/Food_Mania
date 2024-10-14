@@ -10,12 +10,12 @@ function App() {
   console.log('Current User', user);
   return (
     <div className="App">
-      <div style={{height:"100px"}}></div>
+      {/* <div style={{height:"100px"}}></div>
       {isAuthenticated && <h3>Hello {user.name}</h3>}
       {isAuthenticated ? (<button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
       Log Out
     </button>
-  ):(<button onClick={() => loginWithRedirect()}>Log In with Redirect</button>)}
+  ):(<button onClick={() => loginWithRedirect()}>Log In with Redirect</button>)} */}
       <RoutesLink />
     </div>
   );

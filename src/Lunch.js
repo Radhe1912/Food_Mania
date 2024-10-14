@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';  // Import axios for API requests
 import Header from './Header';
 import Footer from './Footer';
@@ -53,7 +53,7 @@ const Lunch = () => {
     );
 
     // Reset page to 1 if search query changes
-    React.useEffect(() => {
+    useEffect(() => {
         setCurrentPage(1);
     }, [searchQuery]);
 
@@ -80,8 +80,15 @@ const Lunch = () => {
 
     // Add to Cart function
     const addToCart = (item, quantity) => {
-        // Send the data to the backend to add to cart
+        const userEmail = localStorage.getItem('userEmail');  // Retrieve user email from localStorage
+    
+        if (!userEmail) {
+            alert('You must be logged in to add items to the cart.');
+            return;
+        }
+    
         axios.post('http://localhost:5000/api/cart', {
+            userEmail,  // Include user email in the request
             name: item.name,
             price: item.price,
             quantity: quantity,
@@ -89,11 +96,14 @@ const Lunch = () => {
         })
         .then((response) => {
             console.log('Item added to cart:', response.data);
+            alert('Item added to cart successfully!');  // Simple feedback for now
         })
         .catch((error) => {
             console.error('Error adding item to cart:', error);
+            alert('Failed to add item to cart. Please try again.');  // Error feedback
         });
-    };
+    };    
+    
 
     // Modal handler to show selected item and add quantity
     const openModal = (item) => {

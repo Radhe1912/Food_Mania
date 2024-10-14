@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import Header from './Header';
 import Footer from './Footer';
@@ -38,34 +39,14 @@ const Counter = ({ target }) => {
 };
 
 const Home = () => {
-    // Use refs to refer to the slide and the next/prev buttons
-    const slideRef = useRef(null);
-    const nextRef = useRef(null);
-    const prevRef = useRef(null);
 
-    // Function to handle "next" button click
-    const handleNext = () => {
-        const items = slideRef.current.querySelectorAll('.item');
-        slideRef.current.appendChild(items[0]); // Move the first item to the end
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('loggedInUser');
+        navigate('/Login');
     };
-
-    // Function to handle "prev" button click
-    const handlePrev = () => {
-        const items = slideRef.current.querySelectorAll('.item');
-        slideRef.current.prepend(items[items.length - 1]); // Move the last item to the start
-    };
-
-    useEffect(() => {
-        // Add event listeners
-        nextRef.current.addEventListener('click', handleNext);
-        prevRef.current.addEventListener('click', handlePrev);
-
-        // Cleanup event listeners on component unmount
-        return () => {
-            nextRef.current.removeEventListener('click', handleNext);
-            prevRef.current.removeEventListener('click', handlePrev);
-        };
-    }, []);
 
     const handleRedirect = (url) => {
         setTimeout(() => {
@@ -76,14 +57,14 @@ const Home = () => {
     return (
         <div>
 
-            <Header/>
+            <Header />
 
-            <div id="intro" className="bg-image" style={{ backgroundImage: `url(${Img6})`, height: "100vh"}}>
+            <div id="intro" className="bg-image" style={{ backgroundImage: `url(${Img6})`, height: "100vh" }}>
                 <div className="mask" style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}>
                     <div className="d-flex justify-content-center align-items-center h-100">
                         <div className="row align-items-center">
                             <div className="col-12">
-                                <h1 className="mb-0 text-white display-1" style={{fontFamily: "Cinzel, Palatino Linotype,sans-serif"}}>Food Mania</h1>
+                                <h1 className="mb-0 text-white display-1" style={{ fontFamily: "Cinzel, Palatino Linotype,sans-serif" }}>Food Mania</h1>
                             </div>
                         </div>
                     </div>
@@ -94,57 +75,68 @@ const Home = () => {
                 <div className="container my-5 py-5"></div>
             </main>
 
-            <div className='justify-content-center' style={{marginTop:"-100px", marginBottom:"50px"}}>
-                <h1 style={{fontFamily: "Cinzel,Palatino Linotype,sans-serif"}}>Savor the Flavors: A Taste Experience Like No Other</h1>
+            <div className='justify-content-center' style={{ marginTop: "-100px", marginBottom: "50px" }}>
+                <h1 style={{ fontFamily: "Cinzel,Palatino Linotype,sans-serif" }}>Savor the Flavors: A Taste Experience Like No Other</h1>
             </div>
 
-            <div className='data'>
-                <div className="slide" ref={slideRef}>
-                    <div className="item" style={{ backgroundImage: `url(${Img1})` }}>
-                        <div className="content">
-                            <div className="name">Culinary Excellence</div>
-                            <div className="des">Crafted by master chefs with a passion for creating unforgettable dining experiences.</div>
-                            <button className="see-more-btn">See More</button>
+            <div id="carouselExampleCaptions" className="carousel slide">
+                <div className="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active visually-hidden" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" className='visually-hidden' data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" className='visually-hidden' data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" className='visually-hidden' data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                    <button type="button" className='visually-hidden' data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                </div>
+                <div className="carousel-inner" style={{ maxWidth: '1100px', margin: 'auto' }}>
+                    <div className="carousel-item active">
+                        <img src={Img1} className="d-block w-100" alt="Regular Room 1" style={{ maxHeight: '550px', objectFit: 'cover' }} />
+                        <div className="carousel-caption d-none d-md-block" style={{ bottom: '5%', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)', fontFamily: 'Georgia, serif', color: '#fff' }}>
+                            <h3 style={{ fontWeight: 'bold', fontSize: '2em' }}>Deliciously Crafted Cuisine</h3>
+                            <p style={{ fontSize: '1.2em', fontWeight: 'bold', color:"#000" }}>Experience the finest flavors, crafted with fresh, locally-sourced ingredients that make every meal a delight.</p>
                         </div>
                     </div>
-                    <div className="item" style={{ backgroundImage: `url(${Img2})` }}>
-                        <div className="content">
-                            <div className="name">Sustainable Practices</div>
-                            <div className="des">Our commitment to sustainability means you can enjoy guilt-free indulgence.</div>
-                            <button className="see-more-btn">See More</button>
+                    <div className="carousel-item">
+                        <img src={Img2} className="d-block w-100" alt="Regular Room 2" style={{ maxHeight: '550px', objectFit: 'cover' }} />
+                        <div className="carousel-caption d-none d-md-block" style={{ bottom: '5%', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)', fontFamily: 'Georgia, serif', color: '#005' }}>
+                            <h3 style={{ fontWeight: 'bold', fontSize: '2em' }}>Gourmet Taste in Every Bite</h3>
+                            <p style={{ fontSize: '1.2em', fontWeight: 'bold', color:"#000" }}>Our chefs ensure each dish is a perfect blend of taste and aesthetics, offering a dining experience to remember.</p>
                         </div>
                     </div>
-                    <div className="item" style={{ backgroundImage: `url(${Img3})` }}>
-                        <div className="content">
-                            <div className="name">Decadent Delights</div>
-                            <div className="des">Indulge in our rich, creamy desserts crafted to satisfy your sweetest cravings.</div>
-                            <button className="see-more-btn">See More</button>
+                    <div className="carousel-item">
+                        <img src={Img3} className="d-block w-100" alt="Regular Room 3" style={{ maxHeight: '550px', objectFit: 'cover' }} />
+                        <div className="carousel-caption d-none d-md-block" style={{ bottom: '5%', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)', fontFamily: 'Georgia, serif', color: '#fff' }}>
+                            <h3 style={{ fontWeight: 'bold', fontSize: '2em' }}>World-Class Presentation</h3>
+                            <p style={{ fontSize: '1.2em', fontWeight: 'bold', color:"#000" }}>Every dish is not just a meal, but a piece of art, designed to please your palate and your eyes.</p>
                         </div>
                     </div>
-                    <div className="item" style={{ backgroundImage: `url(${Img7})` }}>
-                        <div className="content">
-                            <div className="name">World-Class Flavors</div>
-                            <div className="des">From spices of the East to the freshest seafood, savor global cuisines with every dish.</div>
-                            <button className="see-more-btn">See More</button>
+                    <div className="carousel-item">
+                        <img src={Img7} className="d-block w-100" alt="Regular Room 3" style={{ maxHeight: '550px', objectFit: 'cover' }} />
+                        <div className="carousel-caption d-none d-md-block" style={{ bottom: '5%', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)', fontFamily: 'Georgia, serif', color: '#fff' }}>
+                            <h3 style={{ fontWeight: 'bold', fontSize: '2em' }}>Unparalleled Dining Ambiance</h3>
+                            <p style={{ fontSize: '1.2em', fontWeight: 'bold', color:"#000" }}>Dine in comfort with our sophisticated atmosphere, where every detail is tailored to enhance your culinary experience.</p>
                         </div>
                     </div>
-                    <div className="item" style={{ backgroundImage: `url(${Img5})` }}>
-                        <div className="content">
-                            <div className="name">Artisan Ice Cream</div>
-                            <div className="des">Handcrafted with premium ingredients, our ice creams offer unique flavors and a velvety texture.</div>
-                            <button className="see-more-btn">See More</button>
+                    <div className="carousel-item">
+                        <img src={Img5} className="d-block w-100" alt="Regular Room 3" style={{ maxHeight: '550px', objectFit: 'cover' }} />
+                        <div className="carousel-caption d-none d-md-block" style={{ bottom: '5%', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)', fontFamily: 'Georgia, serif', color: '#fff' }}>
+                            <h3 style={{ fontWeight: 'bold', fontSize: '2em' }}>Signature Dishes Await</h3>
+                            <p style={{ fontSize: '1.2em', fontWeight: 'bold', color:"#000" }}>Indulge in our signature dishes, prepared to perfection, ensuring a memorable dining experience with every visit.</p>
                         </div>
                     </div>
                 </div>
-
-                <div className="button">
-                    <button className="prev" ref={prevRef}><i className="fa-solid fa-arrow-left"></i></button>
-                    <button className="next" ref={nextRef}><i className="fa-solid fa-arrow-right"></i></button>
-                </div>
+                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                    <span className="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
+                    <span className="visually-hidden">Previous</span>
+                </button>
+                <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                    <span className="carousel-control-next-icon bg-dark" aria-hidden="true"></span>
+                    <span className="visually-hidden">Next</span>
+                </button>
             </div>
 
-            <div style={{ height: "150px", width: "100%", textAlign: "center", marginTop: "50px", marginBottom:"-40px" }}>
-                <h1 style={{textAlign: "center", fontFamily: "Cinzel,Palatino Linotype,sans-serif" }}>Luxurious Stays, Fine Dining, and Easy Food Orders</h1>
+
+            <div style={{ height: "150px", width: "100%", textAlign: "center", marginTop: "50px", marginBottom: "-40px" }}>
+                <h1 style={{ textAlign: "center", fontFamily: "Cinzel,Palatino Linotype,sans-serif" }}>Luxurious Stays, Fine Dining, and Easy Food Orders</h1>
             </div>
 
             {/* Images */}
@@ -204,34 +196,34 @@ const Home = () => {
             {/* Events */}
             <div className="events-container">
                 <h1 className="events-title">Events and Conferences</h1>
-                
+
                 <p className="events-description">
                     Food Mania elevates every occasion into an awe-inspiring, immersive experience to cherish forever.
                 </p>
 
                 <div className="events-grid row">
                     <div className="event-item col-lg-4">
-                        <img src={Meeting1} alt="Meetings & Conferences" className="event-image"/>
+                        <img src={Meeting1} alt="Meetings & Conferences" className="event-image" />
                         <p className="event-label">MEETINGS & CONFERENCES</p>
                     </div>
 
                     <div className="event-item col-lg-4">
-                        <img src={Event4} alt="Events" className="event-image"/>
+                        <img src={Event4} alt="Events" className="event-image" />
                         <p className="event-label">EVENTS</p>
                     </div>
 
                     <div className="event-item col-lg-4">
-                        <img src={Wedding1} alt="Timeless Weddings" className="event-image"/>
+                        <img src={Wedding1} alt="Timeless Weddings" className="event-image" />
                         <p className="event-label">TIMELESS WEDDINGS</p>
                     </div>
                 </div>
             </div>
 
             <div className='justify-content-center'>
-                <h1 style={{fontFamily: "Cinzel, Palatino Linotype, sans-serif", position: "relative", paddingBottom: "20px",paddingTop: "20px"}} className="custom-title">Exceeding Expectations: Our Journey of Accomplishments</h1>
+                <h1 style={{ fontFamily: "Cinzel, Palatino Linotype, sans-serif", position: "relative", paddingBottom: "20px", paddingTop: "20px" }} className="custom-title">Exceeding Expectations: Our Journey of Accomplishments</h1>
             </div>
 
-            <div className="container-fluid facts p-5 my-5" style={{backgroundColor: "#113955"}}>
+            <div className="container-fluid facts p-5 my-5" style={{ backgroundColor: "#113955" }}>
                 <div className="row gx-5 gy-4 py-5">
                     <div className="col-lg-3 col-md-6">
                         <div className="d-flex">
@@ -284,7 +276,7 @@ const Home = () => {
                 </div>
             </div>
 
-            <Footer/>
+            <Footer />
         </div>
     );
 }

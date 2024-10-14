@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import axios from 'axios';
+import './BookTable.css';
 
 const BookTable = () => {
     const [numTables, setNumTables] = useState(1);
     const [bookingTime, setBookingTime] = useState('');
     const [availableTables, setAvailableTables] = useState(0);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [mobile, setMobile] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
@@ -24,10 +28,18 @@ const BookTable = () => {
     }, []);
 
     const handleBookTable = async () => {
+        if (!name || !email || !mobile) {
+            setError('Please fill in all fields.');
+            return;
+        }
+
         try {
             const response = await axios.post('http://localhost:5000/api/bookTable', {
                 numTables,
                 bookingTime,
+                name,
+                email,
+                mobile
             });
             setSuccess(response.data);
             setError('');
@@ -40,26 +52,72 @@ const BookTable = () => {
     return (
         <div>
             <Header />
-            <div style={{ height: '100px' }}></div>
+            <div className="book-table-container" style={{marginTop:"100px"}}>
+                <div className="book-table-form">
+                    <h2>Book a Table</h2>
+                    <p>Available tables: {availableTables}</p>
 
-            <h2>Book a Table</h2>
-            <p>Available tables: {availableTables}</p>
+                    <div className="form-group">
+                        <label>Name:</label>
+                        <input
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            placeholder="Enter your name"
+                            required
+                        />
+                    </div>
 
-            <label>
-                Number of Tables:
-                <input type="number" value={numTables} onChange={(e) => setNumTables(parseInt(e.target.value))} min="1" max={availableTables}/>
-            </label>
+                    <div className="form-group">
+                        <label>Email:</label>
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Enter your email"
+                            required
+                        />
+                    </div>
 
-            <label>
-                Booking Time:
-                <input type="datetime-local" value={bookingTime} onChange={(e) => setBookingTime(e.target.value)}/>
-            </label>
+                    <div className="form-group">
+                        <label>Mobile:</label>
+                        <input
+                            type="tel"
+                            value={mobile}
+                            onChange={(e) => setMobile(e.target.value)}
+                            placeholder="Enter your mobile number"
+                            required
+                        />
+                    </div>
 
-            <button onClick={handleBookTable}>Book Table</button>
+                    <div className="form-group">
+                        <label>Number of Tables:</label>
+                        <input
+                            type="number"
+                            value={numTables}
+                            onChange={(e) => setNumTables(parseInt(e.target.value))}
+                            min="1"
+                            max={availableTables}
+                            required
+                        />
+                    </div>
 
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            {success && <p style={{ color: 'green' }}>{success}</p>}
+                    <div className="form-group">
+                        <label>Booking Time:</label>
+                        <input
+                            type="datetime-local"
+                            value={bookingTime}
+                            onChange={(e) => setBookingTime(e.target.value)}
+                            required
+                        />
+                    </div>
 
+                    <button className="book-button" onClick={handleBookTable}>Book Table</button>
+
+                    {error && <p className="error-message">{error}</p>}
+                    {success && <p className="success-message">{success}</p>}
+                </div>
+            </div>
             <Footer />
         </div>
     );

@@ -112,23 +112,27 @@ const BookRoom = () => {
     };
 
     const handleBook = async (bookingDetails) => {
-        // Send booking details to the server and update available rooms in MongoDB
+        const userEmail = localStorage.getItem('userEmail'); // Retrieve userEmail from localStorage
+        const bookingData = { ...bookingDetails, userEmail }; // Add userEmail to booking details
+    
         const response = await fetch('http://localhost:5000/api/bookRooms', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json',},
-            body: JSON.stringify(bookingDetails),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(bookingData),
         });
-
-        const responseData = await response.json(); // Get the response data
+    
+        const responseData = await response.json();
         console.log(responseData); // Log the response for debugging
-
+    
         if (response.ok) {
             alert('Room booked successfully!');
             setModalOpen(false); // Close modal after successful booking
         } else {
-            alert(`Error booking the room: ${responseData}`); // Show the error message from the server
+            alert(`Error booking the room: ${responseData.message || response.statusText}`);
         }
-    };
+    };    
 
     return (
         <div>
@@ -143,7 +147,7 @@ const BookRoom = () => {
                             <div className="card h-100">
                                 <div className="team-item position-relative">
                                     <div className="position-relative overflow-hidden rounded">
-                                        <img className="img-fluid w-100" src={RegularRoom1} alt="" style={{ height: "400px", borderRadius: "5px" }} />
+                                        <img className="img-fluid w-100" src={RegularRoom1} alt="Regular Room" style={{ height: "400px", borderRadius: "5px" }} />
                                     </div>
                                 </div>
                                 <div className="card-body">
@@ -159,7 +163,7 @@ const BookRoom = () => {
                             <div className="card h-100">
                                 <div className="team-item position-relative">
                                     <div className="position-relative overflow-hidden rounded">
-                                        <img className="img-fluid w-100" src={StandardRoom1} alt="" style={{ height: "400px", borderRadius: "5px" }} />
+                                        <img className="img-fluid w-100" src={StandardRoom1} alt="Standard Room" style={{ height: "400px", borderRadius: "5px" }} />
                                     </div>
                                 </div>
                                 <div className="card-body">
@@ -175,7 +179,7 @@ const BookRoom = () => {
                             <div className="card h-100">
                                 <div className="team-item position-relative">
                                     <div className="position-relative overflow-hidden rounded">
-                                        <img className="img-fluid w-100" src={LuxuriousRoom1} alt="" style={{ height: "400px", borderRadius: "5px" }} />
+                                        <img className="img-fluid w-100" src={LuxuriousRoom1} alt="Luxurious Room" style={{ height: "400px", borderRadius: "5px" }} />
                                     </div>
                                 </div>
                                 <div className="card-body">

@@ -65,13 +65,22 @@
     display: block;
     margin: 0 auto;
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #181255;
+    transform: scale(1.05);
+    transition: background-color 0.3s, transform 0.2s;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
 }
 
 .btn.custom-btn:hover {
-    background-color: #45a049;
+    background-color: #233983;
+}
+
+.btn.custom-btn:active {
+    transform: scale(1);
+    /* No scaling when active */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Subtle shadow on click */
 }

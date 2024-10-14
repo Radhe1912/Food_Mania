@@ -13,11 +13,13 @@ const roomPrices = {
 
 const BookingDetails = () => {
     const [bookings, setBookings] = useState([]);
+    const userEmail = localStorage.getItem('userEmail'); // Get the logged-in user's email
 
     useEffect(() => {
         const fetchBookings = async () => {
+            const userEmail = localStorage.getItem('userEmail'); // Retrieve user email from localStorage
             try {
-                const response = await fetch('http://localhost:5000/api/bookings'); // Adjust the URL if needed
+                const response = await fetch(`http://localhost:5000/api/bookings?email=${userEmail}`); // Include userEmail in query
                 if (!response.ok) {
                     throw new Error('Failed to fetch bookings');
                 }
@@ -27,9 +29,9 @@ const BookingDetails = () => {
                 console.error('Error fetching bookings:', error);
             }
         };
-
+    
         fetchBookings();
-    }, []);
+    }, []);    
 
     const calculateTotalPrice = (booking) => {
         const start = new Date(booking.startDate);
@@ -42,23 +44,23 @@ const BookingDetails = () => {
     const generatePDF = async () => {
         const hotelName = "Food Mania";  // Set your hotel name here
         const message = "Thank you for choosing Food Mania. We hope you have a wonderful stay!";
-    
+
         // Calculate the total cost of all bookings
         const totalCost = bookings.reduce((total, booking) => total + calculateTotalPrice(booking), 0);
-    
+
         const element = document.getElementById('booking-table'); // Get the table element
         const canvas = await html2canvas(element); // Create a canvas from the element
         const imgData = canvas.toDataURL('image/png'); // Get image data as base64 string
-    
+
         const pdfDoc = await PDFDocument.create(); // Create a new PDF document
         const page = pdfDoc.addPage(); // Add a page to the document
-    
+
         // Set font and size for the hotel name, message, and total cost
         const fontSize = 20;
         const messageFontSize = 14;
         const totalFontSize = 16;
         const imgMarginTop = 40;  // Margin from the top for the image
-    
+
         // Draw hotel name
         page.drawText(hotelName, {
             x: 50,
@@ -66,7 +68,7 @@ const BookingDetails = () => {
             size: fontSize,
             color: rgb(0, 0.53, 0.71),  // You can change the color if needed
         });
-    
+
         // Draw custom message
         page.drawText(message, {
             x: 50,
@@ -74,14 +76,14 @@ const BookingDetails = () => {
             size: messageFontSize,
             color: rgb(0, 0, 0),  // Black color
         });
-    
+
         // Convert the base64 image data to a Uint8Array
         const imgBytes = await fetch(imgData).then(res => res.arrayBuffer());
         const pngImage = await pdfDoc.embedPng(imgBytes); // Embed the PNG image
-    
+
         const imgWidth = page.getWidth() - 100;  // Leave some padding on sides
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
-    
+
         // Draw the embedded image onto the PDF page
         const imageYPosition = page.getHeight() - imgHeight - imgMarginTop - 100;
         page.drawImage(pngImage, {
@@ -90,7 +92,7 @@ const BookingDetails = () => {
             width: imgWidth,
             height: imgHeight,
         });
-    
+
         // Draw the total cost right after the table image
         const totalCostYPosition = imageYPosition - 30;  // Adjust as needed to create space after the table
         page.drawText(`Total Cost: $${totalCost.toFixed(2)}`, {
@@ -99,11 +101,11 @@ const BookingDetails = () => {
             size: totalFontSize,
             color: rgb(0, 0, 0),  // Black color
         });
-    
+
         const pdfBytes = await pdfDoc.save(); // Save the PDF document
         const blob = new Blob([pdfBytes], { type: 'application/pdf' }); // Create a blob from the PDF bytes
         const url = URL.createObjectURL(blob); // Create a URL for the blob
-    
+
         // Create a link element to download the PDF
         const link = document.createElement('a');
         link.href = url;
@@ -111,7 +113,7 @@ const BookingDetails = () => {
         document.body.appendChild(link);
         link.click(); // Trigger the download
         document.body.removeChild(link); // Remove the link
-    };    
+    };
 
     return (
         <div>

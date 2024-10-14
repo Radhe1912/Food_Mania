@@ -53,14 +53,14 @@ const RegularRoom = () => {
                     </button>
                 </div>
 
-                <div className="room-section">
+                {/* <div className="room-section">
                     <div className="section-header">
                         <h2 className="section-title">Book Regular Rooms Now</h2>
                     </div>
                     <div style={{float: "left"}}>
                         <button>Book Room</button>
                     </div>
-                </div>
+                </div> */}
 
                 {/* Highlights */}
                 <div className="room-section">

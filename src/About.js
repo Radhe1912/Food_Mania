@@ -8,13 +8,13 @@ const About = () => {
     return (
         <div>
             <Header/>
-            <div className="about-container mt-5">
+            <div className="pt-20" style={{paddingTop:"70px"}}>
                 <h1 className="about-title">About Us</h1>
-                <div className="about-content">
+                <div className="about-content" style={{}}>
                     <div className="about-image">
                         <img src={Logo2} alt="About Us" className="img-fluid" />
                     </div>
-                    <div className="about-description">
+                    <div className="about-description" style={{paddingRight:"20px", paddingLeft:"0"}}>
                         <h2>Welcome to Food Mania!</h2>
                         <p>
                             At Food Mania, we believe in providing our guests with an unparalleled experience that combines luxury, comfort, and delicious culinary delights. Nestled in the heart of the city, our hotel offers a perfect retreat for travelers seeking relaxation and adventure.

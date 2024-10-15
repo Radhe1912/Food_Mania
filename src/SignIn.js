@@ -22,6 +22,7 @@ const SignIn = () => {
             if (response.data.status) {
                 setSuccess(true);
                 localStorage.setItem('isSignedIn', true);
+                localStorage.setItem('userEmail', email); // Store user email after login
                 setError('');
                 navigate('/');
             } else {

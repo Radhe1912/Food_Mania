@@ -17,7 +17,7 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://food-mania-hotel-sw-2.vercel.app/api/Login', { email, pwd: password });
+            const response = await axios.post('https://food-mania-hotel-sw-3.vercel.app/api/Login', { email, pwd: password });
             if (response.data.status) {
                 localStorage.setItem('isLoggedIn', true);
                 localStorage.setItem('userEmail', email); // Store user email after login

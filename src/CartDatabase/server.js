@@ -4,7 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 // MongoDB connection
-mongoose.connect('mongodb://localhost:27017/foodmania', {
+mongoose.connect('mongodb+srv://radhe19patel:QWE1EZzunK9rdJ6M@cluster0.q9ewi.mongodb.net/FoodMania', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });

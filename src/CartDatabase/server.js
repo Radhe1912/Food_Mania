@@ -5,18 +5,14 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 // MongoDB connection
-mongoose.connect("mongodb+srv://radhe19patel:radhe19patel@cluster0.q9ewi.mongodb.net/FoodMania?retryWrites=true&w=majority&appName=Cluster0", {
+mongoose.connect("mongodb://localhost:27017/foodmania", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
 
 // Define the app
 const app = express();
-app.use(cors({
-    origin: 'https://food-mania-hotel-sw-7.vercel.app', // Add your Vercel URL here
-    methods: ['GET', 'POST', 'PATCH'],
-    credentials: true
-}));
+app.use(cors({}));
 
 app.use(bodyParser.json());
 

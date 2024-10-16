@@ -18,7 +18,7 @@ const SignIn = () => {
     const handleSignup = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://food-mania-hotel-sw-4.vercel.app/SignIn', { name, email, pwd: password });
+            const response = await axios.post('https://food-mania-hotel-sw-5.vercel.app/api/SignIn', { name, email, pwd: password });
             if (response.data.status) {
                 setSuccess(true);
                 localStorage.setItem('isSignedIn', true);

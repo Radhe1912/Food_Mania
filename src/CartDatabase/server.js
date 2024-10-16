@@ -11,7 +11,11 @@ mongoose.connect('mongodb+srv://radhe19patel:ELymINVdv23aVUch@cluster0.q9ewi.mon
 
 // Define the app
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: 'https://food-mania-hotel-sw-4.vercel.app', // Add your Vercel URL here
+    methods: ['GET', 'POST', 'PATCH']
+}));
+
 app.use(bodyParser.json());
 
 // Schema for cart items

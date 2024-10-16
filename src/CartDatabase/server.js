@@ -2,9 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+require('dotenv').config();
 
 // MongoDB connection
-mongoose.connect('mongodb+srv://radhe19patel:ELymINVdv23aVUch@cluster0.q9ewi.mongodb.net/FoodMania', {
+mongoose.connect("mongodb+srv://radhe19patel:radhe19patel@cluster0.q9ewi.mongodb.net/FoodMania?retryWrites=true&w=majority&appName=Cluster0", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
@@ -13,7 +14,8 @@ mongoose.connect('mongodb+srv://radhe19patel:ELymINVdv23aVUch@cluster0.q9ewi.mon
 const app = express();
 app.use(cors({
     origin: 'https://food-mania-hotel-sw-7.vercel.app', // Add your Vercel URL here
-    methods: ['GET', 'POST', 'PATCH']
+    methods: ['GET', 'POST', 'PATCH'],
+    credentials: true
 }));
 
 app.use(bodyParser.json());
@@ -256,7 +258,7 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model("users", userSchema);
 
 // Sign-up API
-app.post("/api/SignIn", async (req, res) => {
+app.post("/SignIn", async (req, res) => {
     const { name, email, pwd } = req.body;
 
     let result = await User.findOne({ email });

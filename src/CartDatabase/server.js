@@ -12,7 +12,7 @@ mongoose.connect('mongodb+srv://radhe19patel:ELymINVdv23aVUch@cluster0.q9ewi.mon
 // Define the app
 const app = express();
 app.use(cors({
-    origin: 'https://food-mania-hotel-sw-6.vercel.app', // Add your Vercel URL here
+    origin: 'https://food-mania-hotel-sw-7.vercel.app', // Add your Vercel URL here
     methods: ['GET', 'POST', 'PATCH']
 }));
 

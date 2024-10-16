@@ -252,7 +252,7 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model("users", userSchema);
 
 // Sign-up API
-app.post("/SignIn", async (req, res) => {
+app.post("/api/SignIn", async (req, res) => {
     const { name, email, pwd } = req.body;
 
     let result = await User.findOne({ email });
@@ -266,7 +266,7 @@ app.post("/SignIn", async (req, res) => {
 });
 
 // Login API
-app.post("/Login", async (req, res) => {
+app.post("/api/Login", async (req, res) => {
     const { email, pwd } = req.body;
 
     let result = await User.findOne({ email, pwd });
@@ -277,8 +277,8 @@ app.post("/Login", async (req, res) => {
     }
 });
 
-// Start the server
-const port = process.env.PORT || 5000;
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+// // Start the server
+// const port = process.env.PORT || 5000;
+// app.listen(port, () => {
+//     console.log(`Server is running on port ${port}`);
+// });

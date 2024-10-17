@@ -5,14 +5,17 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 // MongoDB connection
-mongoose.connect("mongodb://localhost:27017/foodmania", {
+mongoose.connect("mongodb+srv://radhe19patel:radhe19patel@cluster0.q9ewi.mongodb.net/FoodMania?retryWrites=true&w=majority&appName=Cluster0", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
 
 // Define the app
 const app = express();
-app.use(cors({}));
+app.use(cors({
+    origin: '*', // Allows requests from any origin, adjust this as needed
+    methods: ['GET', 'POST'], // Specifies allowed methods
+}));
 
 app.use(bodyParser.json());
 

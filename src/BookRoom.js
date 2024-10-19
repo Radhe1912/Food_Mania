@@ -115,7 +115,7 @@ const BookRoom = () => {
         const userEmail = localStorage.getItem('userEmail'); // Retrieve userEmail from localStorage
         const bookingData = { ...bookingDetails, userEmail }; // Add userEmail to booking details
     
-        const response = await fetch('https://food-mania-backend-3yzs.onrender.com/api/bookRooms', {
+        const response = await fetch('http://localhost:5000/api/bookRooms', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

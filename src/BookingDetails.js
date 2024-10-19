@@ -19,7 +19,7 @@ const BookingDetails = () => {
         const fetchBookings = async () => {
             const userEmail = localStorage.getItem('userEmail'); // Retrieve user email from localStorage
             try {
-                const response = await fetch(`http://localhost:5000/api/bookings?email=${userEmail}`); // Include userEmail in query
+                const response = await fetch(`https://food-mania-backend-3yzs.onrender.com/api/bookings?email=${userEmail}`); // Include userEmail in query
                 if (!response.ok) {
                     throw new Error('Failed to fetch bookings');
                 }

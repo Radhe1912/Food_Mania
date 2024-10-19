@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 // MongoDB connection
-mongoose.connect("mongodb://localhost:27017/foodmania", {
+mongoose.connect("mongodb+srv://radhe19patel:radhe19patel@cluster0.q9ewi.mongodb.net/FoodMania?retryWrites=true&w=majority&appName=Cluster0", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
@@ -254,7 +254,7 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model("users", userSchema);
 
 // Sign-up API
-app.post("/SignIn", async (req, res) => {
+app.post("/api/SignIn", async (req, res) => {
     const { name, email, pwd } = req.body;
 
     let result = await User.findOne({ email });
@@ -268,7 +268,7 @@ app.post("/SignIn", async (req, res) => {
 });
 
 // Login API
-app.post("/Login", async (req, res) => {
+app.post("/api/Login", async (req, res) => {
     const { email, pwd } = req.body;
 
     let result = await User.findOne({ email, pwd });

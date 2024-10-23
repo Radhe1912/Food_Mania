@@ -16,7 +16,7 @@ const Cart = () => {
     const hotelCoordinates = { lat: 23.23486274132175, lon: 72.65336560000003 }; // Replace with your hotel's actual coordinates
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/api/cart?email=${userEmail}`)
+        axios.get(`https://food-mania-backend-3yzs.onrender.com/api/cart?email=${userEmail}`)
             .then((response) => {
                 setCartItems(response.data);
             })
@@ -30,7 +30,7 @@ const Cart = () => {
     };
 
     const updateCartItemQuantity = (itemId, action) => {
-        axios.patch(`http://localhost:5000/api/cart/${itemId}`, { action })
+        axios.patch(`https://food-mania-backend-3yzs.onrender.com/api/cart/${itemId}`, { action })
             .then((response) => {
                 setCartItems(response.data); // Update the cart items with the updated data
             })

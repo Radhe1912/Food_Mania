@@ -18,7 +18,7 @@ const BookTable = () => {
     useEffect(() => {
         const fetchAvailableTables = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/availableTables');
+                const response = await axios.get('https://food-mania-backend-3yzs.onrender.com/api/availableTables');
                 setAvailableTables(response.data.totalTables - response.data.bookedTables);
             } catch (err) {
                 console.error('Error fetching available tables:', err);
@@ -34,7 +34,7 @@ const BookTable = () => {
         }
 
         try {
-            const response = await axios.post('http://localhost:5000/api/bookTable', {
+            const response = await axios.post('https://food-mania-backend-3yzs.onrender.com/api/bookTable', {
                 numTables,
                 bookingTime,
                 name,

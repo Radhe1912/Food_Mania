@@ -88,7 +88,7 @@ const FastFood = () => {
             return;
         }
     
-        axios.post('http://localhost:5000/api/cart', {
+        axios.post('https://food-mania-backend-3yzs.onrender.com/api/cart', {
             userEmail,  // Include user email in the request
             name: item.name,
             price: item.price,

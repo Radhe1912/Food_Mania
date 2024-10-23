@@ -79,7 +79,7 @@ const RegularRoom = () => {
                 </div>
 
                 {/* Location */}
-                <div className="room-section">
+                {/* <div className="room-section">
                     <div className="section-header">
                         <span className="icon">&#9733;</span>
                         <h2 className="section-title">Location</h2>
@@ -89,7 +89,7 @@ const RegularRoom = () => {
                         Our hotel is located in the heart of the city, close to popular tourist attractions, shopping centers, and public transportation.
                     </p>
                     <p className="location-address">Address: 123 City Center, Downtown, ZIP 00000</p>
-                </div>
+                </div> */}
 
                 {/* Facilities */}
                 <div className="room-section">

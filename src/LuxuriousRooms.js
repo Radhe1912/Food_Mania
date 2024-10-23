@@ -81,7 +81,7 @@ const StandardRoom = () => {
                 </div>
 
                 {/* Location */}
-                <div className="room-section">
+                {/* <div className="room-section">
                     <div className="section-header">
                         <span className="icon">&#9733;</span>
                         <h2 className="section-title">Location</h2>
@@ -91,7 +91,7 @@ const StandardRoom = () => {
                         Our luxurious room is located in a prime area of the city, offering breathtaking views and easy access to high-end shopping, dining, and entertainment.
                     </p>
                     <p className="location-address">Address: 123 Luxury Lane, Upscale District, ZIP 00000</p>
-                </div>
+                </div> */}
 
                 {/* Facilities */}
                 <div className="room-section">

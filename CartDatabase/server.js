@@ -42,7 +42,7 @@ const Booking = mongoose.model('Booking', bookingSchema);
 
 // Add item to the cart (POST request)
 app.post('/api/cart', async (req, res) => {
-    const { name, price, quantity, image, userEmail } = req.body; // Include userEmail
+    const { name, price, quantity, image, userEmail } = req.body;
 
     try {
         // Find the cart item for the specific user
@@ -54,7 +54,7 @@ app.post('/api/cart', async (req, res) => {
             await cartItem.save();
         } else {
             // Create a new cart item if it doesn't exist
-            cartItem = new CartItem({ name, price, quantity, image, userEmail }); // Include userEmail
+            cartItem = new CartItem({ name, price, quantity, image, userEmail });
             await cartItem.save();
         }
         res.status(201).send(cartItem);

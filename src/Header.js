@@ -36,22 +36,24 @@ const Header = () => {
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav me-auto">
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/">Home</a>
+                                    <Link to='/' className='nav-link'>Home</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/orderFood">Order Food</a>
+                                    {/* If we will use anchor tag then it will take loading to render the page */}
+                                    <Link to='/orderFood' className='nav-link'>Order Food</Link>
+                                    {/* <a className="nav-link" href="/orderFood">Order Food</a> */}
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/BookTable">Book Table</a>
+                                    <Link to='/BookTable' className='nav-link'>Book Table</Link>
                                 </li>
                                 <li className="nav-item">
-                                <a className="nav-link" href="/BookRoom">Bookings</a>
+                                    <Link to='/BookRoom' className='nav-link'>Bookings</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/About">About</a>
+                                    <Link to='/About' className='nav-link'>About</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/Contact">Contact</a>
+                                    <Link to='/Contact' className='nav-link'>Contact</Link>
                                 </li>
                             </ul>
                             <button onClick={handleLogout} className='btn logout-btn'>Logout</button>
